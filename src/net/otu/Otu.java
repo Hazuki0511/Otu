@@ -1,6 +1,9 @@
 package net.otu;
 
-import net.otu.gui.Gui;
+import net.otu.font.FontLoader;
+import net.otu.gui.screen.Screen;
+import net.otu.gui.screen.screens.MainMenuScreen;
+import net.otu.texture.TextureLoader;
 import org.newdawn.slick.*;
 
 public class Otu extends BasicGame {
@@ -17,36 +20,53 @@ public class Otu extends BasicGame {
 
     private static final int FPS = 60;
 
+    public Screen currentScreen = new MainMenuScreen();
+
     public Otu(String title) {
         super(title);
     }
 
     public static void main(String[] args) throws SlickException {
-        AppGameContainer container = new AppGameContainer(new Otu(TITLE));
+        var container = new AppGameContainer(new Otu(TITLE + " - " + BUILD));
 
-        setupContainer(container);
+        createWindow(container);
     }
 
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
-
+        // テクスチャの読み込み
+        TextureLoader.loadTextures();
+        // フォントの読み込み
+        FontLoader.loadFonts();
+        // 画面の初期化
+        this.currentScreen.initScreen();
     }
 
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
-
+        // 画面を更新
+        this.currentScreen.updateScreen();
     }
 
     @Override
     public void render(GameContainer gameContainer, Graphics g) throws SlickException {
-        Gui.drawString(g, "Otu!", 100, 100, Color.red);
+        // 画面を描画
+        this.currentScreen.renderScreen(g);
     }
 
-    private static void setupContainer(AppGameContainer container) throws SlickException {
+    private static void createWindow(AppGameContainer container) throws SlickException {
+        // サイズ指定　フルスクリーンに設定
         container.setDisplayMode(WIDTH, HEIGHT, FULL_SCREEN);
+        // フレームレートを設定
         container.setTargetFrameRate(FPS);
+        // FPS表示を無効化
         container.setShowFPS(false);
+        // ウィンドウを作成
         container.start();
+    }
+
+    public void setCurrentScreen(Screen screen) {
+        this.currentScreen = screen;
     }
 
 }
