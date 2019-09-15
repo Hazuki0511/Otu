@@ -1,14 +1,13 @@
 package net.otu.gui.screen;
 
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 
-public abstract class Screen {
+public interface Screen {
 
-    public abstract void initScreen();
+    void initScreen();
 
-    public abstract void renderScreen(Graphics g) throws SlickException;
+    void renderScreen(Graphics g);
 
-    public abstract void updateScreen();
+    void updateScreen();
 
 }

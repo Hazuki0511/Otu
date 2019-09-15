@@ -1,9 +1,9 @@
 package net.otu;
 
-import net.otu.font.FontLoader;
+import net.otu.font.Fonts;
 import net.otu.gui.screen.Screen;
 import net.otu.gui.screen.screens.MainMenuScreen;
-import net.otu.texture.TextureLoader;
+import net.otu.texture.Textures;
 import org.newdawn.slick.*;
 
 public class Otu extends BasicGame {
@@ -35,9 +35,9 @@ public class Otu extends BasicGame {
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
         // テクスチャの読み込み
-        TextureLoader.loadTextures();
+        Textures.loadTextures();
         // フォントの読み込み
-        FontLoader.loadFonts();
+        Fonts.loadFonts();
         // 画面の初期化
         this.currentScreen.initScreen();
     }
