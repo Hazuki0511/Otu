@@ -1,21 +1,22 @@
 package net.otu.gui.button;
 
-public abstract class Button {
+import org.newdawn.slick.Graphics;
 
-    public int buttonID;
+public abstract class Button {
 
     public String buttonText;
 
-    public int x;
+    public float x;
 
-    public int y;
+    public float y;
 
-    public int width;
+    public float width;
 
-    public int height;
+    public float height;
 
-    public Button(int buttonID, String buttonText, int x, int y, int width, int height) {
-        this.buttonID = buttonID;
+    public boolean hovered;
+
+    public Button(String buttonText, float x, float y, float width, float height) {
         this.buttonText = buttonText;
         this.x = x;
         this.y = y;
@@ -23,10 +24,8 @@ public abstract class Button {
         this.height = height;
     }
 
-    public abstract void drawButton();
+    public abstract void render(Graphics g);
 
-    public abstract boolean buttonClicked();
-
-    public abstract boolean buttonHovered();
+    public abstract void clicked();
 
 }
